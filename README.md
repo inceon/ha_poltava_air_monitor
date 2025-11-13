@@ -178,7 +178,7 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 
 ## License
 
-MIT © inceon
+MIT © Serhii Okhrimenko ([@inceon](https://github.com/inceon))
 
 ## Credits
 
