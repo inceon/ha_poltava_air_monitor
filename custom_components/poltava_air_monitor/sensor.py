@@ -229,82 +229,90 @@ class PoltavaAirMonitorParameterSensor(PoltavaAirMonitorSensor):
 
     def _configure_sensor(self) -> None:
         """Configure sensor attributes based on type."""
+        # Helper function to safely get device class
+        def get_device_class(attr_name: str):
+            """Get device class if it exists."""
+            try:
+                return getattr(SensorDeviceClass, attr_name, None)
+            except AttributeError:
+                return None
+        
         config = {
             SENSOR_TYPE_PM25: {
                 "name": "PM2.5",
                 "icon": "mdi:dots-hexagon",
                 "unit": CONCENTRATION_MICROGRAMS_PER_CUBIC_METER,
-                "device_class": SensorDeviceClass.PM25,
+                "device_class": get_device_class("PM25"),
                 "state_class": SensorStateClass.MEASUREMENT,
             },
             SENSOR_TYPE_PM10: {
                 "name": "PM10",
                 "icon": "mdi:dots-hexagon",
                 "unit": CONCENTRATION_MICROGRAMS_PER_CUBIC_METER,
-                "device_class": SensorDeviceClass.PM10,
+                "device_class": get_device_class("PM10"),
                 "state_class": SensorStateClass.MEASUREMENT,
             },
             SENSOR_TYPE_PM1: {
                 "name": "PM1",
                 "icon": "mdi:dots-hexagon",
                 "unit": CONCENTRATION_MICROGRAMS_PER_CUBIC_METER,
-                "device_class": SensorDeviceClass.PM1,
+                "device_class": get_device_class("PM1"),
                 "state_class": SensorStateClass.MEASUREMENT,
             },
             SENSOR_TYPE_OZONE: {
                 "name": "Ozone",
                 "icon": "mdi:molecule",
                 "unit": CONCENTRATION_MICROGRAMS_PER_CUBIC_METER,
-                "device_class": SensorDeviceClass.OZONE,
+                "device_class": get_device_class("OZONE"),
                 "state_class": SensorStateClass.MEASUREMENT,
             },
             SENSOR_TYPE_NO2: {
                 "name": "Nitrogen Dioxide",
                 "icon": "mdi:molecule",
                 "unit": CONCENTRATION_MICROGRAMS_PER_CUBIC_METER,
-                "device_class": SensorDeviceClass.NITROGEN_DIOXIDE,
+                "device_class": get_device_class("NITROGEN_DIOXIDE"),
                 "state_class": SensorStateClass.MEASUREMENT,
             },
             SENSOR_TYPE_SO2: {
                 "name": "Sulfur Dioxide",
                 "icon": "mdi:molecule",
                 "unit": CONCENTRATION_MICROGRAMS_PER_CUBIC_METER,
-                "device_class": SensorDeviceClass.SULPHUR_DIOXIDE,
+                "device_class": get_device_class("SULPHUR_DIOXIDE"),
                 "state_class": SensorStateClass.MEASUREMENT,
             },
             SENSOR_TYPE_CO: {
                 "name": "Carbon Monoxide",
                 "icon": "mdi:molecule-co",
                 "unit": CONCENTRATION_MICROGRAMS_PER_CUBIC_METER,
-                "device_class": SensorDeviceClass.CARBON_MONOXIDE,
+                "device_class": get_device_class("CARBON_MONOXIDE") or get_device_class("CO"),
                 "state_class": SensorStateClass.MEASUREMENT,
             },
             SENSOR_TYPE_TEMPERATURE: {
                 "name": "Temperature",
                 "icon": "mdi:thermometer",
                 "unit": UnitOfTemperature.CELSIUS,
-                "device_class": SensorDeviceClass.TEMPERATURE,
+                "device_class": get_device_class("TEMPERATURE"),
                 "state_class": SensorStateClass.MEASUREMENT,
             },
             SENSOR_TYPE_HUMIDITY: {
                 "name": "Humidity",
                 "icon": "mdi:water-percent",
                 "unit": PERCENTAGE,
-                "device_class": SensorDeviceClass.HUMIDITY,
+                "device_class": get_device_class("HUMIDITY"),
                 "state_class": SensorStateClass.MEASUREMENT,
             },
             SENSOR_TYPE_PRESSURE: {
                 "name": "Pressure",
                 "icon": "mdi:gauge",
                 "unit": UnitOfPressure.HPA,
-                "device_class": SensorDeviceClass.ATMOSPHERIC_PRESSURE,
+                "device_class": get_device_class("ATMOSPHERIC_PRESSURE"),
                 "state_class": SensorStateClass.MEASUREMENT,
             },
             SENSOR_TYPE_WIND_SPEED: {
                 "name": "Wind Speed",
                 "icon": "mdi:weather-windy",
                 "unit": UnitOfSpeed.METERS_PER_SECOND,
-                "device_class": SensorDeviceClass.WIND_SPEED,
+                "device_class": get_device_class("WIND_SPEED"),
                 "state_class": SensorStateClass.MEASUREMENT,
             },
             SENSOR_TYPE_WIND_DIRECTION: {
