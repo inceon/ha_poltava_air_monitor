@@ -62,8 +62,15 @@ class PoltavaAirMonitorCoordinator(DataUpdateCoordinator[dict[str, Any]]):
                 # Use configured post ID
                 post_id = self.entry.data[CONF_POST_ID]
             
+            _LOGGER.debug("Fetching data for post_id: %s", post_id)
+            
             # Get detailed data for the post
             data = await self.api.get_post_detail(post_id)
+            
+            _LOGGER.debug("Received data: %s", data)
+            _LOGGER.info("Successfully fetched data for post %s with %d params", 
+                        data.get("name", "Unknown"), 
+                        len(data.get("params", [])))
             
             return data
             

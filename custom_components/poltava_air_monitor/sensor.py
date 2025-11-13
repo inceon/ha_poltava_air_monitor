@@ -77,6 +77,9 @@ async def async_setup_entry(
     """Set up Poltava Air Monitor sensors from a config entry."""
     coordinator: PoltavaAirMonitorCoordinator = hass.data[DOMAIN][entry.entry_id]
     
+    _LOGGER.debug("Setting up sensors for entry: %s", entry.entry_id)
+    _LOGGER.debug("Coordinator data: %s", coordinator.data)
+    
     entities: list[PoltavaAirMonitorSensor] = []
     
     # Add AQI sensor
@@ -86,13 +89,17 @@ async def async_setup_entry(
             entry=entry,
         )
     )
+    _LOGGER.debug("Added AQI sensor")
     
     # Add parameter sensors from the data
     if coordinator.data and "params" in coordinator.data:
+        _LOGGER.debug("Found %d params in coordinator data", len(coordinator.data["params"]))
+        # Create sensors based on actual data
         for param in coordinator.data["params"]:
             sensor_type = get_sensor_type_from_name(param["name"])
             
             if sensor_type:
+                _LOGGER.debug("Creating sensor for %s (type: %s)", param["name"], sensor_type)
                 entities.append(
                     PoltavaAirMonitorParameterSensor(
                         coordinator=coordinator,
@@ -101,7 +108,41 @@ async def async_setup_entry(
                         sensor_type=sensor_type,
                     )
                 )
+            else:
+                _LOGGER.warning("Unknown sensor type for parameter: %s", param["name"])
+    else:
+        # No data yet - create default sensors that will populate when data arrives
+        _LOGGER.warning("No coordinator data available yet, creating default sensors")
+        _LOGGER.debug("coordinator.data = %s", coordinator.data)
+        
+        # Create all standard sensor types
+        default_sensors = [
+            (SENSOR_TYPE_PM25, "ТЧ2,5,&nbsp;мкг/м<sup>3</sup>"),
+            (SENSOR_TYPE_PM10, "ТЧ10,&nbsp;мкг/м<sup>3</sup>"),
+            (SENSOR_TYPE_PM1, "ТЧ1,&nbsp;мкг/м<sup>3</sup>"),
+            (SENSOR_TYPE_OZONE, "Озон – O<sub>3</sub>,&nbsp;мкг/м<sup>3</sup>"),
+            (SENSOR_TYPE_NO2, "Діоксид азоту – NO<sub>2</sub>,&nbsp;мкг/м<sup>3</sup>"),
+            (SENSOR_TYPE_SO2, "Діоксид сірки – SO<sub>2</sub>,&nbsp;мкг/м<sup>3</sup>"),
+            (SENSOR_TYPE_CO, "Оксид вуглецю – CO,&nbsp;мкг/м<sup>3</sup>"),
+            (SENSOR_TYPE_TEMPERATURE, "Температура повітря, °С"),
+            (SENSOR_TYPE_HUMIDITY, "Вологість, %"),
+            (SENSOR_TYPE_PRESSURE, "Тиск, кПа"),
+            (SENSOR_TYPE_WIND_SPEED, "Швидкість вітру, м/с"),
+            (SENSOR_TYPE_WIND_DIRECTION, "Напрям вітру, °"),
+        ]
+        
+        for sensor_type, param_name in default_sensors:
+            _LOGGER.debug("Creating default sensor for %s", sensor_type)
+            entities.append(
+                PoltavaAirMonitorParameterSensor(
+                    coordinator=coordinator,
+                    entry=entry,
+                    param_name=param_name,
+                    sensor_type=sensor_type,
+                )
+            )
     
+    _LOGGER.info("Adding %d entities to Home Assistant", len(entities))
     async_add_entities(entities)
 
 

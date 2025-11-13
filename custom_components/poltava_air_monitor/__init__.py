@@ -24,15 +24,23 @@ CONFIG_SCHEMA = cv.config_entry_only_config_schema(DOMAIN)
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
     """Set up Poltava Air Monitor from a config entry."""
+    _LOGGER.debug("Setting up Poltava Air Monitor integration for entry: %s", entry.entry_id)
+    
     coordinator = PoltavaAirMonitorCoordinator(hass, entry)
     
-    await coordinator.async_config_entry_first_refresh()
+    try:
+        await coordinator.async_config_entry_first_refresh()
+    except Exception as err:
+        _LOGGER.error("Failed to fetch initial data: %s", err)
+        # Still continue - sensors will show as unavailable until data is fetched
     
     hass.data.setdefault(DOMAIN, {})
     hass.data[DOMAIN][entry.entry_id] = coordinator
     
+    _LOGGER.debug("Forwarding setup to platforms: %s", PLATFORMS)
     await hass.config_entries.async_forward_entry_setups(entry, PLATFORMS)
     
+    _LOGGER.info("Successfully set up Poltava Air Monitor integration")
     return True
 
 
