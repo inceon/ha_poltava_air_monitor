@@ -1,0 +1,12 @@
+{
+  "domain": "poltava_air_monitor",
+  "name": "Poltava Air Monitor",
+  "codeowners": ["@inceon"],
+  "config_flow": true,
+  "documentation": "https://github.com/inceon/ha-poltava-air-monitor",
+  "issue_tracker": "https://github.com/inceon/ha-poltava-air-monitor/issues",
+  "iot_class": "cloud_polling",
+  "requirements": [],
+  "version": "1.0.0"
+}
+

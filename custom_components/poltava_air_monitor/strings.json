@@ -1,0 +1,46 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Set up Poltava Air Monitor",
+        "description": "Configure your Poltava air quality monitoring integration.",
+        "data": {
+          "name": "Integration name"
+        }
+      },
+      "station": {
+        "title": "Select station method",
+        "description": "Choose how to select your monitoring station.",
+        "data": {
+          "selection": "Selection method"
+        }
+      },
+      "station_list": {
+        "title": "Select monitoring station",
+        "description": "Choose a monitoring station from the list.",
+        "data": {
+          "post_id": "Monitoring station"
+        }
+      },
+      "coordinates": {
+        "title": "Find nearest station",
+        "description": "Enter coordinates to find the nearest monitoring station. Your home coordinates: {home_latitude}, {home_longitude}",
+        "data": {
+          "latitude": "Latitude",
+          "longitude": "Longitude"
+        }
+      }
+    },
+    "error": {
+      "cannot_connect": "Failed to connect to Poltava Air Monitor API",
+      "unknown": "Unexpected error occurred"
+    },
+    "abort": {
+      "already_configured": "This monitoring station is already configured",
+      "station_not_found": "Selected monitoring station not found",
+      "no_stations_found": "No monitoring stations found",
+      "unknown": "Unexpected error occurred"
+    }
+  }
+}
+

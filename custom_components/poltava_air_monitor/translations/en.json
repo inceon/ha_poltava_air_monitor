@@ -1,0 +1,99 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Set up Poltava Air Monitor",
+        "description": "Configure your Poltava air quality monitoring integration.",
+        "data": {
+          "name": "Integration name"
+        }
+      },
+      "station": {
+        "title": "Select station method",
+        "description": "Choose how to select your monitoring station.",
+        "data": {
+          "selection": "Selection method"
+        },
+        "data_description": {
+          "selection": "Select whether to choose from a list of stations or find the nearest one by coordinates"
+        }
+      },
+      "station_list": {
+        "title": "Select monitoring station",
+        "description": "Choose a monitoring station from the list.",
+        "data": {
+          "post_id": "Monitoring station"
+        },
+        "data_description": {
+          "post_id": "Select one of the available monitoring stations in Poltava"
+        }
+      },
+      "coordinates": {
+        "title": "Find nearest station",
+        "description": "Enter coordinates to find the nearest monitoring station. Your home coordinates: {home_latitude}, {home_longitude}",
+        "data": {
+          "latitude": "Latitude",
+          "longitude": "Longitude"
+        },
+        "data_description": {
+          "latitude": "Latitude in decimal degrees (WGS84)",
+          "longitude": "Longitude in decimal degrees (WGS84)"
+        }
+      }
+    },
+    "error": {
+      "cannot_connect": "Failed to connect to Poltava Air Monitor API. Please check your internet connection and try again.",
+      "unknown": "Unexpected error occurred. Please try again later."
+    },
+    "abort": {
+      "already_configured": "This monitoring station is already configured",
+      "station_not_found": "Selected monitoring station not found",
+      "no_stations_found": "No monitoring stations found for the provided coordinates",
+      "unknown": "Unexpected error occurred during configuration"
+    }
+  },
+  "entity": {
+    "sensor": {
+      "aqi": {
+        "name": "Air Quality Index"
+      },
+      "pm25": {
+        "name": "PM2.5"
+      },
+      "pm10": {
+        "name": "PM10"
+      },
+      "pm1": {
+        "name": "PM1"
+      },
+      "ozone": {
+        "name": "Ozone"
+      },
+      "no2": {
+        "name": "Nitrogen Dioxide"
+      },
+      "so2": {
+        "name": "Sulfur Dioxide"
+      },
+      "co": {
+        "name": "Carbon Monoxide"
+      },
+      "temperature": {
+        "name": "Temperature"
+      },
+      "humidity": {
+        "name": "Humidity"
+      },
+      "pressure": {
+        "name": "Pressure"
+      },
+      "wind_speed": {
+        "name": "Wind Speed"
+      },
+      "wind_direction": {
+        "name": "Wind Direction"
+      }
+    }
+  }
+}
+

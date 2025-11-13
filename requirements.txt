@@ -1,0 +1,4 @@
+# Requirements for development
+homeassistant>=2023.8.0
+aiohttp
+
