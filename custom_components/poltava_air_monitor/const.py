@@ -16,7 +16,7 @@ CONF_LATITUDE: Final = "latitude"
 CONF_LONGITUDE: Final = "longitude"
 
 # Defaults
-DEFAULT_SCAN_INTERVAL: Final = 300  # 5 minutes
+DEFAULT_SCAN_INTERVAL: Final = 600  # 10 minutes
 DEFAULT_NAME: Final = "Poltava Air Monitor"
 
 # Sensor types

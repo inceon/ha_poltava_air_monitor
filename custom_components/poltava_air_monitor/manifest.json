@@ -5,8 +5,8 @@
     "@inceon"
   ],
   "config_flow": true,
-  "documentation": "https://github.com/inceon/ha-poltava-air-monitor",
-  "issue_tracker": "https://github.com/inceon/ha-poltava-air-monitor/issues",
+  "documentation": "https://github.com/inceon/ha_poltava_air_monitor",
+  "issue_tracker": "https://github.com/inceon/ha_poltava_air_monitor/issues",
   "iot_class": "cloud_polling",
   "requirements": [],
   "version": "1.0.2"
