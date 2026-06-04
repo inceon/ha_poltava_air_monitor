@@ -1,7 +1,7 @@
 [![SWUbanner](https://raw.githubusercontent.com/vshymanskyy/StandWithUkraine/main/banner-direct-single.svg)](https://stand-with-ukraine.pp.ua/)
 
 <p align="center">
-  <img src="icon.png" alt="Poltava Air Monitor Logo" width="200"/>
+  <img src="icons/logo.png" alt="Poltava Air Monitor Logo" width="200"/>
 </p>
 
 # 💨 Poltava Air Monitor
@@ -190,4 +190,3 @@ MIT © Serhii Okhrimenko ([@inceon](https://github.com/inceon))
 If you find this integration useful, please give it a ⭐ on GitHub!
 
 For issues and feature requests, please use the [GitHub Issues](https://github.com/inceon/ha-poltava-air-monitor/issues) page.
-
