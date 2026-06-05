@@ -7,7 +7,7 @@
 # 💨 Poltava Air Monitor
 
 [![hacs_badge](https://img.shields.io/badge/HACS-Custom-orange.svg)](https://github.com/custom-components/hacs)
-[![GitHub Release](https://img.shields.io/github/release/inceon/ha-poltava-air-monitor.svg)](https://github.com/inceon/ha-poltava-air-monitor/releases)
+[![GitHub Release](https://img.shields.io/github/v/release/inceon/ha_poltava_air_monitor)](https://github.com/inceon/ha_poltava_air_monitor/releases)
 
 > A Home Assistant integration for air quality monitoring in Poltava, Ukraine.
 
